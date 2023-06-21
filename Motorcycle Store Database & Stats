@@ -1,0 +1,38 @@
+--Create a store database
+
+CREATE TABLE motorcycles (id INTEGER PRIMARY KEY, brand TEXT, model TEXT, year INTEGER, color TEXT, price_usd INTEGER);
+
+INSERT INTO motorcycles VALUES (1, "yamaha", "mt-03", 2017, "black", 4000);
+INSERT INTO motorcycles VALUES (2, "yamaha", "r3", 2009, "blue", 5000);
+INSERT INTO motorcycles VALUES (3, "honda", "africa twin", 2019, "black", 9000);
+INSERT INTO motorcycles VALUES (4, "honda", "grom", 2020, "red", 2600);
+INSERT INTO motorcycles VALUES (5, "kawasaki", "ninja 300", 2015, "green", 2900);
+INSERT INTO motorcycles VALUES (6, "yamaha", "r6", 2019, "red", 6000);
+INSERT INTO motorcycles VALUES (7, "honda", "CB1000R", 2022, "gray", 10000);
+INSERT INTO motorcycles VALUES (8, "suzuki", "GSX-R750", 2018, "blue", 6000);
+INSERT INTO motorcycles VALUES (9, "yamaha", "mt-06", 2016, "blue", 5000);
+INSERT INTO motorcycles VALUES (10, "honda", "grom", 2007, "green", 1200);
+INSERT INTO motorcycles VALUES (11, "kawasaki", "ninja 400", 2013, "black", 3000);
+INSERT INTO motorcycles VALUES (12, "suzuki", "SV650", 2021, "black", 4800);
+INSERT INTO motorcycles VALUES (13, "ducati", "scrambler nightshift", 2022, "gray", 5000);
+INSERT INTO motorcycles VALUES (14, "kawasaki", "z125", 2006, "green", 1350);
+INSERT INTO motorcycles VALUES (15, "honda", "CB100R", 2017, "black", 4300);
+
+-- display the motorcycles from 2009 - 2020 ordered by price.
+SELECT *
+FROM motorcycles
+WHERE year BETWEEN 2009 AND 2020
+ORDER BY year DESC;
+
+-- what is the average price of the black motorcycles by brand?
+SELECT brand, AVG(price_usd)
+FROM motorcycles
+WHERE color IS "black"
+GROUP BY brand
+ORDER BY AVG(price_usd);
+
+-- how much total value does each motorcycle brand represent?
+SELECT brand, SUM(price_usd)
+FROM motorcycles
+GROUP BY brand
+ORDER BY SUM(price_usd) DESC;
