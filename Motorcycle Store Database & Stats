@@ -18,7 +18,7 @@ INSERT INTO motorcycles VALUES (13, "ducati", "scrambler nightshift", 2022, "gra
 INSERT INTO motorcycles VALUES (14, "kawasaki", "z125", 2006, "green", 1350);
 INSERT INTO motorcycles VALUES (15, "honda", "CB100R", 2017, "black", 4300);
 
--- display the motorcycles from 2009 - 2020 ordered by price.
+-- display the motorcycles from 2009 - 2020 ordered by year.
 SELECT *
 FROM motorcycles
 WHERE year BETWEEN 2009 AND 2020
