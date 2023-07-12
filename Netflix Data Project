@@ -1,0 +1,42 @@
+This project utilized data from the Netflix database stored at http://sqlfiddle.com/#!17/7dae0/16/0
+
+
+SELECT count(*) FROM "netflix_titles_info";
+
+SELECT * FROM "netflix_titles_info" LIMIT 5;
+
+SELECT release_year, rating, title, director
+FROM "netflix_people" people
+LEFT JOIN "netflix_titles_info" titles
+ON people.show_id = titles.show_id;
+
+SELECT COUNT(*)
+FROM "netflix_titles_info" titles
+WHERE titles.type = 'movie';
+
+SELECT MAX(date(date_added))
+FROM "netflix_titles_info" titles;
+
+SELECT titles.show_id, titles.title, titles.type
+FROM "netflix_titles_info" titles
+ORDER BY title;
+
+SELECT titles.title, people.director
+FROM "netflix_titles_info" titles
+LEFT JOIN "netflix_people" people
+ON people.show_id = titles.show_id
+WHERE titles.title = 'The Starling';
+
+SELECT titles.release_year, titles.title
+FROM "netflix_titles_info" titles
+WHERE titles.type = 'Movie'
+ORDER BY release_year ASC
+LIMIT 1;
+
+SELECT titles.release_year, titles.title
+FROM "netflix_titles_info" titles
+WHERE titles.type = 'movie'
+AND titles.release_year <=
+(SELECT MIN(release_year)
+ FROM "netflix_titles_info"
+ WHERE type = 'movie');
