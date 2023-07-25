@@ -57,3 +57,14 @@ FROM (SELECT track_name, danceability
 FROM Spotifydata
 ORDER BY danceability DESC
 LIMIT 10);
+
+#5. What is the average popularity for the artists? For every artist with an average popularity of 90+, show their name, their average popularity, and label them as a “Top Star”.
+WITH popularity_avg_CTE AS (
+SELECT artist_name, avg(popularity) AS avg_popularity
+FROM SpotifyData
+GROUP BY artist_name
+ORDER BY avg(popularity) DESC
+)
+SELECT artist_name, avg_popularity, 'Top Star' AS tag
+FROM popularity_avg_CTE
+WHERE avg_popularity >= 90;
