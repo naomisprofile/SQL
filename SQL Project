@@ -1,0 +1,27 @@
+
+
+#1.
+SELECT firstname, lastname, customerid, country
+FROM chinook.customers
+WHERE country <> 'USA';
+
+#2.
+SELECT firstname, lastname, customerid, country
+FROM chinook.customers
+WHERE country = 'Brazil';
+
+#3.
+SELECT c.firstname, c.lastname, c.customerid, c.country, i.invoiceid, i.billingcountry, i.invoicedate
+FROM chinook.customers c
+JOIN chinook.invoices i
+ON i.customerid = c.customerid
+WHERE c.country = 'Brazil';
+
+#4.
+SELECT * 
+FROM chinook.employees
+WHERE Title = "Sales Support Agent";
+
+#5.
+SELECT distinct billingcountry
+FROM chinook.invoices;
