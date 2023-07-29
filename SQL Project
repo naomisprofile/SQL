@@ -25,3 +25,80 @@ WHERE Title = "Sales Support Agent";
 #5.
 SELECT distinct billingcountry
 FROM chinook.invoices;
+
+#6.
+SELECT e.lastname, e.firstname, i.invoiceid
+FROM chinook.employees e
+JOIN chinook.customers c
+ON c.supportrepid = e.employeeid
+JOIN chinook.invoices i
+ON i.customerid = c.customerid;
+
+#7. 
+SELECT e.lastname, e.firstname, c.lastname, c.firstname, c.country, i.total
+FROM chinook.employees e
+JOIN chinook.customers c
+ON c.supportrepid = e.employeeid
+JOIN chinook.invoices i
+ON i.customerid = c.customerid;
+
+#8.
+SELECT COUNT(*)
+FROM chinook.invoices
+WHERE invoicedate BETWEEN '2009-01-01' and '2009-12-31';
+
+#9.
+SELECT SUM(total)
+FROM chinook.invoices
+WHERE invoicedate BETWEEN '2009-01-01' and '2009-12-31';
+
+#10.
+SELECT items.invoicelineid, t.name
+FROM chinook.invoice_items items
+JOIN chinook.tracks t
+ON items.trackid = t.trackid
+ORDER BY invoicelineid;
+
+#11.
+SELECT items.invoicelineid, t.name AS track_name, artists.name AS artist_name
+FROM chinook.invoice_items items
+JOIN chinook.tracks t
+ON items.trackid = t.trackid
+JOIN chinook.albums
+ON t.albumid = albums.albumid
+JOIN chinook.artists
+ON albums.artistid = artists.artistid
+ORDER BY invoicelineid;
+
+#12.
+SELECT distinct tracks.name AS track, albums.title AS album, m.name AS media_type, g.name AS genre
+FROM chinook.tracks
+JOIN chinook.albums
+ON tracks.albumid = albums.albumid
+JOIN chinook.media_types m
+ON tracks.mediatypeid = m.mediatypeid
+JOIN chinook.genres g
+ON tracks.genreid = g.genreid;
+
+#13.
+SELECT e.lastname, e.firstname, SUM(i.total) AS 'total_sales'
+FROM chinook.employees e
+JOIN chinook.customers c
+ON c.supportrepid = e.employeeid
+JOIN chinook.invoices i
+ON i.customerid = c.customerid
+WHERE e.title = 'Sales Support Agent'
+GROUP BY e.firstname;
+
+#14.
+SELECT e.firstname, e.lastname,SUM(i.total) AS 'total sales' 
+FROM chinook.employees e
+JOIN chinook.customers c
+ON c.supportrepid = e.employeeid
+JOIN chinook.Invoices i
+ON i.customerId = c.customerid
+WHERE e.Title = 'Sales Support Agent' 
+AND i.invoicedate LIKE '2009%'
+GROUP BY e.firstname
+ORDER BY SUM(i.total) DESC 
+LIMIT 1;
