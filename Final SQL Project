@@ -1,4 +1,4 @@
-
+*/ The data for this project can be found at the bottom of this page */
 
 #1. Show Customers (their full names, customer ID, and country) who are not in the US.SELECT firstname, lastname, customerid, country
 FROM chinook.customers
