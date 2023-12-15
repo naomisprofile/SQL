@@ -1,6 +1,8 @@
-*/ The data for this project can be found at the bottom of this page */
+/* The following written SQL code was taken from the Chinook Media dataset. I pulled info around
+Chinook Medias sales and specific customer information.*/
 
-#1. Show Customers (their full names, customer ID, and country) who are not in the US.SELECT firstname, lastname, customerid, country
+#1. Show Customers (their full names, customer ID, and country) who are not in the US.
+SELECT firstname, lastname, customerid, country
 FROM chinook.customers
 WHERE country <> 'USA';
 
